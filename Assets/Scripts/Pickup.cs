@@ -6,7 +6,10 @@ using Photon.Pun;
 public enum PickupType
 {
     Health,
-    Ammo
+    Ammo,
+    Pistol,
+    Rifle,
+    Sniper
 }
 
 public class Pickup : MonoBehaviour
@@ -27,6 +30,12 @@ public class Pickup : MonoBehaviour
                 player.photonView.RPC("Heal", player.photonPlayer, value);
             else if (type == PickupType.Ammo)
                 player.photonView.RPC("GiveAmmo", player.photonPlayer, value);
+            else if (type == PickupType.Pistol)
+                player.photonView.RPC("SwitchGun", player.photonPlayer, value);
+            else if (type == PickupType.Rifle)
+                player.photonView.RPC("SwitchGun", player.photonPlayer, value);
+            else if (type == PickupType.Sniper)
+                player.photonView.RPC("SwitchGun", player.photonPlayer, value);
 
             PhotonNetwork.Destroy(gameObject);
         }

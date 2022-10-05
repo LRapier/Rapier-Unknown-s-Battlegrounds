@@ -128,6 +128,7 @@ Transform:
   - {fileID: 7766680644963312496}
   - {fileID: 3923252453508628845}
   - {fileID: 6542925534929886269}
+  - {fileID: 5052359589632306782}
   m_Father: {fileID: 8962110479271647740}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9998,6 +9999,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &5799885959734780509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5052359589632306782}
+  m_Layer: 6
+  m_Name: SniperSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5052359589632306782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799885959734780509}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.01000002, z: 0.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6050860644046180821}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5876832210953163982
 GameObject:
   m_ObjectHideFlags: 0
@@ -14688,7 +14720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8497570205430872158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01000002, z: 0.144}
+  m_LocalPosition: {x: 0, y: -0.01000002, z: 5.144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14994,9 +15026,12 @@ MonoBehaviour:
   curAmmo: 24
   maxAmmo: 60
   bulletSpeed: 200
-  shootRate: 0.2
+  shootRate: 1.5
+  gunActive: 2
   bulletPrefab: {fileID: 6747409874501684613, guid: 54234a366349e4d489c7a0d6b3e08ee3, type: 3}
+  sniperPrefab: {fileID: 6747409874501684613, guid: e3595c16b94f4a743b655cb0cccd2cb4, type: 3}
   bulletSpawnPos: {fileID: 6542925534929886269}
+  sniperSpawnPos: {fileID: 5052359589632306782}
 --- !u!1 &8962110479271647731
 GameObject:
   m_ObjectHideFlags: 0
