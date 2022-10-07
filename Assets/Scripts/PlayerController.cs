@@ -25,8 +25,12 @@ public class PlayerController : MonoBehaviourPun
     public Player photonPlayer;
     public PlayerWeapon weapon;
     public MeshRenderer mr;
-    public GameObject viewmodelGun;
-    public GameObject otherGun;
+    public GameObject viewmodelPistol;
+    public GameObject otherPistol;
+    public GameObject viewmodelRifle;
+    public GameObject otherRifle;
+    public GameObject viewmodelSniper;
+    public GameObject otherSniper;
     public ParticleSystem impactParticleSystem;
 
     [PunRPC]
@@ -40,13 +44,13 @@ public class PlayerController : MonoBehaviourPun
         if (!photonView.IsMine)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
+            viewmodelPistol.SetActive(false);
             rig.isKinematic = true;
         }
         else
         {
             GameUI.instance.Initialize(this);
-            //change to function later?
-            otherGun.SetActive(false);
+            otherPistol.SetActive(false);
         }
     }
 
@@ -119,7 +123,9 @@ public class PlayerController : MonoBehaviourPun
             GetComponentInChildren<CameraController>().SetSpectator();
 
             //change to function later?
-            viewmodelGun.SetActive(false);
+            viewmodelPistol.SetActive(false);
+            viewmodelRifle.SetActive(false);
+            viewmodelSniper.SetActive(false);
 
             rig.isKinematic = true;
             transform.position = new Vector3(0, -50, 0);
@@ -152,6 +158,8 @@ public class PlayerController : MonoBehaviourPun
 
             yield return new WaitForSeconds(0.05f);
 
+            damaging = false;
+
             impactParticleSystem.Clear();
             mr.material.color = defaultColor;
         }
@@ -163,5 +171,75 @@ public class PlayerController : MonoBehaviourPun
         curHp = Mathf.Clamp(curHp + amountToHeal, 0, maxHp);
 
         GameUI.instance.UpdateHealthBar();
+    }
+
+    [PunRPC]
+    public void GunModelSwitch(int gunActive)
+    {
+        switch (gunActive)
+        {
+            case 0:
+                if (!photonView.IsMine)
+                {
+                    viewmodelPistol.SetActive(false);
+                    viewmodelRifle.SetActive(false);
+                    viewmodelSniper.SetActive(false);
+                    otherPistol.SetActive(true);
+                    otherRifle.SetActive(false);
+                    otherSniper.SetActive(false);
+                }
+                else
+                {
+                    viewmodelPistol.SetActive(true);
+                    viewmodelRifle.SetActive(false);
+                    viewmodelSniper.SetActive(false);
+                    otherPistol.SetActive(false);
+                    otherRifle.SetActive(false);
+                    otherSniper.SetActive(false);
+                }
+                break;
+
+            case 1:
+                if (!photonView.IsMine)
+                {
+                    viewmodelPistol.SetActive(false);
+                    viewmodelRifle.SetActive(false);
+                    viewmodelSniper.SetActive(false);
+                    otherPistol.SetActive(false);
+                    otherRifle.SetActive(true);
+                    otherSniper.SetActive(false);
+                }
+                else
+                {
+                    viewmodelPistol.SetActive(false);
+                    viewmodelRifle.SetActive(true);
+                    viewmodelSniper.SetActive(false);
+                    otherPistol.SetActive(false);
+                    otherRifle.SetActive(false);
+                    otherSniper.SetActive(false);
+                }
+                break;
+
+            case 2:
+                if (!photonView.IsMine)
+                {
+                    viewmodelPistol.SetActive(false);
+                    viewmodelRifle.SetActive(false);
+                    viewmodelSniper.SetActive(false);
+                    otherPistol.SetActive(false);
+                    otherRifle.SetActive(false);
+                    otherSniper.SetActive(true);
+                }
+                else
+                {
+                    viewmodelPistol.SetActive(false);
+                    viewmodelRifle.SetActive(false);
+                    viewmodelSniper.SetActive(true);
+                    otherPistol.SetActive(false);
+                    otherRifle.SetActive(false);
+                    otherSniper.SetActive(false);
+                }
+                break;
+        }
     }
 }

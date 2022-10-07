@@ -61,9 +61,11 @@ public class ForceField : MonoBehaviour
             foreach(PlayerController player in GameManager.instance.players)
             {
                 if (player.dead || !player)
+                {
                     continue;
+                }
 
-                if(Vector3.Distance(Vector3.zero, player.transform.position) >= transform.localScale.x)
+                if (Vector3.Distance(Vector3.zero, player.transform.position) >= transform.localScale.x)
                 {
                     player.photonView.RPC("TakeDamage", player.photonPlayer, 0, ffDamage);
                 }

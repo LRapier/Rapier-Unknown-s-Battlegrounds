@@ -33,10 +33,16 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (curAmmo <= 0 || Time.time - lastShootTime < shootRate)
             return;
+
         if (gunActive == 1)
+        {
             curAmmo -= 3;
+            if (curAmmo < 0)
+                curAmmo = 0;
+        }
         else
             curAmmo--;
+
         lastShootTime = Time.time;
 
         GameUI.instance.UpdateAmmoText();
@@ -115,6 +121,7 @@ public class PlayerWeapon : MonoBehaviour
         GameUI.instance.UpdateAmmoText();
     }
 
+    [PunRPC]
     public void SwitchGun(int gunSwitch)
     {
         switch (gunSwitch)
@@ -137,5 +144,6 @@ public class PlayerWeapon : MonoBehaviour
                 break;
 
         }
+        player.GunModelSwitch(gunActive);
     }
 }
